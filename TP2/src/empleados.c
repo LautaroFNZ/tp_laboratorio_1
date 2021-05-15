@@ -48,11 +48,12 @@ int BuscarLibre(eEmpleados empleados[],int tam)
 	return index;
 }
 
-eEmpleados CargarEmpleado(eEmpleados empleados[],int tam)
+eEmpleados CargarEmpleado()
 {
 	eEmpleados empleado;
 
 	empleado.id=ObtenerId();
+	printf("Generando id automatica...\n1");
 	GetString("Ingrese el nombre: ", empleado.nombre);
 	GetString("Ingrese el apellido: ", empleado.apellido);
 	empleado.sueldo=GetFloat("Ingrese el sueldo: ");
@@ -99,11 +100,7 @@ void MostrarTodosLosEmpleados(eEmpleados empleado[], int tam)
 	{
 		if(empleado[i].isEmpty!=EMPTY)
 		{
-			printf("Id Asignado: %d--Apellido y Nombre: %s,%s--Sueldo: %.2f--Sector: %d.\n", empleado[i].id,
-																							 empleado[i].apellido,
-																							 empleado[i].nombre,
-																							 empleado[i].sueldo,
-																							 empleado[i].sector);
+			MostrarUnEmpleado(empleado[i]);
 		}
 
 
@@ -311,6 +308,37 @@ void Ordenamiento(eEmpleados empleados[],int tam)
 	for(i=0;i<tam;i++)
 	{
 		OrdenarPorSector(empleados,tam,i);
+
+	}
+
+
+}
+
+void OrdenPorId(eEmpleados empleados[],int tam)
+{
+	int i;
+	for(i=0;i<tam;i++)
+	{
+		OrdenarPorId(empleados,tam,i);
+
+	}
+
+}
+
+void OrdenarPorId(eEmpleados  empleados[],int tam,int index)
+{
+	int j;
+	eEmpleados aux;
+
+	for(j=0;j<tam;j++)
+	{
+		if(empleados[index].id<empleados[j].id)
+		{
+			aux = empleados[index];
+			empleados[index]=empleados[j];
+			empleados[j]=aux;
+
+		}
 
 	}
 
