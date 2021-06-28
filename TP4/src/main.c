@@ -34,17 +34,19 @@ int main(void)
 	//startTesting(6);  // ll_get
 	//startTesting(7);  // ll_set
 	//startTesting(8);  // ll_remove
-	//startTesting(9);  // ll_clear
-	//startTesting(10); // ll_deleteLinkedList
-	//startTesting(11); // ll_indexOf*/
-	//startTesting(12); // ll_isEmpty
+	//startTesting(9);  // ll_clear             CORREGIR
+	//startTesting(10); // ll_deleteLinkedList	DEPENDE DEL CLEAR
+	//startTesting(11); // ll_indexOf*/			CORREGIR FLECHAS
+	//startTesting(12); // ll_isEmpty			SOLO UNA CONDICION PARA DETERMINAR SI NO ESTA VACIA
 	//startTesting(13); // ll_push
 	//startTesting(14); // ll_pop
-	//startTesting(15); // ll_contains
-	//startTesting(16); // ll_containsAll
+	//startTesting(15); // ll_contains			CORREGIR
+	//startTesting(16); // ll_containsAll		CORREGIR
 	//startTesting(17); // ll_subList
-	//startTesting(18); // ll_clone
-	startTesting(19); // ll_sort */
+	//startTesting(18); // ll_clone				USAR SUBLIST
+	//startTesting(19); // ll_sort */			ARREGLAR (NO ESTABA CORREGIDO)
+
+	printf("No hay ningun test seleccionado");
 
     return 0;
 }
