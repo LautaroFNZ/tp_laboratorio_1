@@ -51,13 +51,29 @@ int BuscarLibre(eEmpleados empleados[],int tam)
 eEmpleados CargarEmpleado()
 {
 	eEmpleados empleado;
+	char sueldo[50];
+	char sector[50];
 
 	empleado.id=ObtenerId();
-	printf("Generando id automatica...\n1");
-	GetString("Ingrese el nombre: ", empleado.nombre);
-	GetString("Ingrese el apellido: ", empleado.apellido);
-	empleado.sueldo=GetFloat("Ingrese el sueldo: ");
-	empleado.sector=GetInt("Ingrese el numero de sector: ");
+	printf("Generando id automatica...\n");
+	//GetString("Ingrese el nombre: ", empleado.nombre);
+	get_StringLetters("Ingrese el nombre: ", empleado.nombre, "ERROR. Reingrese el nombre:");
+	//GetString("Ingrese el apellido: ", empleado.apellido);
+	get_StringLetters("Ingrese el apellido:", empleado.apellido, "ERROR. Reingrese el apellido:");
+	//empleado.sueldo=GetFloat("Ingrese el sueldo: ");
+	int retorno1= get_Stringnumber("Ingrese el sueldo:", sueldo, "ERROR. Reingrese el sueldo:");
+
+	if(retorno1==1)
+	{
+		empleado.sueldo=atof(sueldo);
+
+	}
+	//empleado.sector=GetInt("Ingrese el numero de sector: ");
+	int retorno2= get_Stringnumber("Ingrese el numero de sector:", sector, "ERROR. Reingrese el numero del sector:");
+	if(retorno2==1)
+	{
+		empleado.sector=atof(sector);
+	}
 	empleado.isEmpty=OCUPADO;
 
 	return empleado;
@@ -85,7 +101,7 @@ int InsertarEmpleado(eEmpleados empleados[], int tam)
 
 void MostrarUnEmpleado(eEmpleados empleado)
 {
-	printf("Id Asignado: %d--Apellido y Nombre: %s,%s--Sueldo: %.2f--Sector: %d.\n", empleado.id,
+	printf("Id: %d|Apellido y Nombre: %s,%s|Sueldo: %.2f|Sector: %d.\n", empleado.id,
 																				 empleado.apellido,
 																				 empleado.nombre,
 																				 empleado.sueldo,
@@ -169,33 +185,57 @@ void ModificarEmpleado(eEmpleados empleados[],int tam)
 void EditarEmpleado(eEmpleados empleados[],int index)
 {
 	int menu;
+	char menuStr[50];
+	char salarioStr[50];
+	int retornoSS;
+	char sectorStr[50];
+	int retornoS;
 
-	printf("\n1.Editar nombre: ");
-	printf("2.Editar apellido: ");
-	printf("3. Editar Sueldo: ");
-	printf("4. Editar Sector: ");
+	printf("1. Editar nombre\n");
+	printf("2. Editar apellido\n");
+	printf("3. Editar Sueldo\n");
+	printf("4. Editar Sector\n");
 	printf("5. Cancelar");
-	menu=GetInt("Elija una opcion: ");
+	int retorno = get_Stringnumber("\nElija una opcion:", menuStr, "ERROR.Reingrese una opcion valida:");
+	if(retorno==1)
+	{
+		menu = atoi(menuStr);
+	}
 
 	switch(menu)
 	{
 	case 1:
-		GetString("Ingrese nuevo nombre: ", empleados[index].nombre);
+		get_StringLetters("Ingrese nuevo nombre:", empleados[index].nombre, "ERROR.Reingrese el nombre:");
+		printf("Nombre actualizado!\n");
 		break;
 	case 2:
-		GetString("Ingrese nuevo apellido: ", empleados[index].apellido);
+		//GetString("Ingrese nuevo apellido: ", empleados[index].apellido);
+		get_StringLetters("Ingrese nuevo apellido:", empleados[index].apellido, "ERROR.Reingrese el apellido:");
+		printf("Apellido actualizado!\n");
 		break;
 	case 3:
-		empleados[index].sueldo=GetFloat("Ingrese nuevo salario: ");
+		//empleados[index].sueldo=GetFloat("Ingrese nuevo salario: ");
+		retornoSS=get_Stringnumber("Ingrese nuevo salario:", salarioStr, "ERROR.Reingrese nuevo salario:");
+		if(retornoSS==1)
+		{
+			empleados[index].sueldo = atof(salarioStr);
+			printf("Salario actualizado!\n");
+		}
 		break;
 	case 4:
-		empleados[index].sector=GetInt("Ingrese nuevo sector: ");
+		//empleados[index].sector=GetInt("Ingrese nuevo sector: ");
+		retornoS=get_Stringnumber("Ingrese nuevo sector:", sectorStr, "ERROR.Reingrese nuevo sector:");
+		if(retornoS==1)
+		{
+			empleados[index].sector = atoi(sectorStr);
+			printf("Sector actualizado!\n");
+		}
 		break;
 	case 5:
-		printf("Ha cancelado la operacion. ");
+		printf("Ha cancelado la operacion.\n");
 		break;
 	default:
-		printf("Ingrese una opcion valida.");
+		printf("ERROR.Vuelva a seleccionar modificar\n");
 	 break;
 
 	}

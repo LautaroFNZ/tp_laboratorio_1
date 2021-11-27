@@ -21,6 +21,7 @@ int main(void) {
 
 
 	eEmpleados ListaEmpleados[T];
+	char opcionStr [50];
 	int opcion;
 	int contadorEmpleados;
 	float totalsueldo;
@@ -35,13 +36,20 @@ int main(void) {
 
 	do{
 
+		printf("BIENVENIDO!");
 		printf("\n1. ALTA:");
 		printf("\n2. MODIFICAR:");
 		printf("\n3. BAJA:");
 		printf("\n4. MOSTRAR LISTA DE EMPLEADOS: ");
 		printf("\n5. TOTAL Y PROMEDIO DE SALARIOS:");
-		printf("\n6. SALIR");
-		opcion=GetInt("\nElija una opcion: ");
+		printf("\n6. SALIR\n");
+
+		int retorno=get_Stringnumber("Ingrese una opcion:", opcionStr, "ERROR:Reingrese una opcion válida:");
+		if(retorno==1)
+		{
+			opcion = atoi(opcionStr);
+		}
+
 
 		switch(opcion)
 		{
@@ -112,7 +120,7 @@ int main(void) {
 					}
 					else
 					{
-						printf("La cantidad de empleados que superan el sueldo promedio es: %d", sueldoalto);
+						printf("La cantidad de empleados que superan el sueldo promedio es: %d\n", sueldoalto);
 					}
 
 				}
