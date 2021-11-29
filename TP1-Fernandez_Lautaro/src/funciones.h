@@ -8,19 +8,58 @@
 #ifndef FUNCIONES_H_
 #define FUNCIONES_H_
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-
-int flag(int flag1,int flag2);
-int menu(int op1,int op2,int flag,int flag2);
-int Operando(int* operando);
-int sumar(int op1,int op2,int* resultado);
-int restar(int op1,int op2,int* resultado);
-int dividir(int op1,int op2,float* resultado);
-int multiplicar(int op1,int op2,int* resultado);
-int Factorial(float numero,float* resultado);
-
+/**
+ * @fn float PedirOperando(float)
+ * @brief esta funcion pide ingresar un dato y lo retorna
+ *
+ * @param numero, acumula el dato que se ingresa
+ * @return retornar el numero ingresado para su utilizacion
+ */
+float PedirOperando(float numero);
+/**
+ * @fn float Sumar(float, float)
+ * @brief esta funcion suma los dos float, que son ambos operandos.
+ *
+ * @param numero1 se usa para el primer operando (X)
+ * @param numero2 se usa para el segundo operando (Y)
+ * @return retorna la suma entre el numero1(x) y el numero2(y)
+ */
+float Sumar(float numero1, float numero2);
+/**
+ * @fn float Restar(float, float)
+ * @brief esta funcion resta los float ingresados
+ *
+ * @param numero1 se usa para el primer operando (X)
+ * @param numero2 se usa para el segundo operando (Y)
+ * @return retorna la resta entre el numero 1(x) y el numero2(y)
+ */
+float Restar(float numero1, float numero2);
+/**
+ * @fn float Dividir(float, float)
+ * @brief esta funcion hace que el primer float sea dividido por el segundo.
+ *
+ * @param numero1 se usa para el primer operando (X)
+ * @param numero2 se usa para el segundo operando (Y)
+ * @return retorna el resultado de la division entre ambos numeros.
+ */
+float Dividir(float numero1, float numero2);
+/**
+ * @fn float Multiplicar(float, float)
+ * @brief esta funcion multiplica los float ingresados.
+ *
+ * @param numero1 se usa para el primer operando (X)
+ * @param numero2 se usa para el segundo operando (Y)
+ * @return retorna el producto entre ambos numeros.
+ */
+float Multiplicar(float numero1, float numero2);
+/**
+ * @fn float Factorial(float)
+ * @brief esta funcion calcula el factorial de un numero.
+ *
+ * @param numero: esta parametro sirve para ingresar el primer o segundo operando individualmente.
+ * @return retorna el resultado del factorial del numero ingresado.
+ */
+float Factorial(float numero);
 
 #endif /* FUNCIONES_H_ */
+

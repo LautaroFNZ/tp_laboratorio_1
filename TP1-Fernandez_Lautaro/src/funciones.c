@@ -5,157 +5,66 @@
  *      Author: Lauty
  */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "funciones.h"
 
-int flag(int flag1,int flag2)
+float PedirOperando(float numero)
 {
-	int retorno=0;
+	printf("Ingrese el operando: ");
+	scanf("%f", &numero);
 
-	if(flag1==0 && flag2==0)
-	{
-		retorno=1;
-	}
+	return numero;
 
-	if(flag1!=0 && flag2==0)
-	{
-		retorno=1;
-	}
-
-	if(flag1==0 && flag2!=0)
-	{
-		retorno=1;
-	}
-
-
-
-	return retorno;
 }
 
-int menu(int op1,int op2,int flag,int flag2)
+
+
+float Sumar(float numero1, float numero2)
 {
-	int opcion;
+	float resultado;
 
-	printf("Bienvenido a la calculadora!.\n\n");
+	resultado = numero1 + numero2;
 
-	if(flag==0)
-	{
-		printf("1. Ingresar 1er operando (A=x) \n");
-	}else
-	{
-		printf("1. Ingresar 1er operando (A= %d) \n",op1 );
-	}
-
-	if(flag2==0)
-	{
-		printf("2. Ingresar 2do operando (B=y) \n");
-	}else
-	{
-		printf("2. Ingresar 2do operando (B= %d) \n",op2 );
-	}
-
-	printf("3. Calcular todas las operaciones \n");
-	printf("4. Informar resultados\n");
-	printf("5. Salir\n");
-	printf("-Ingrese una opcion: ");
-	scanf("%d", &opcion);
-
-	return opcion;
+	return resultado;
 }
 
-int Operando(int* operando)
+float Restar(float numero1, float numero2)
 {
-	int x;
 
-	printf("Ingrese el valor del operando: ");
-	scanf("%d", &x);
+	float resultado;
 
-	*operando=x;
+	resultado = numero1 - numero2;
 
-	return 0;
+	return resultado;
 }
 
-int sumar(int op1,int op2,int* resultado)
+
+float Dividir(float numero1, float numero2)
 {
-	int x;
-	int retorno=0;
+	float resultado;
 
-	if(resultado!=NULL)
-	{
+	resultado= numero1/numero2;
 
-		x = op1 + op2;
+	return resultado;
 
-		*resultado=x;
 
-		retorno=1;
-	}
-
-	return retorno;
 }
 
-int restar(int op1,int op2,int* resultado)
+
+float Multiplicar(float numero1, float numero2)
 {
-	int retorno=0;
-	int x;
 
-	if(resultado!=NULL)
-	{
+	float resultado;
 
-		x = op1 - op2;
-		*resultado=x;
+	resultado = numero1 * numero2;
 
-		retorno=1;
+	return resultado;
 
-	}
-
-
-
-	return retorno;
 }
 
-int dividir(int op1,int op2,float* resultado)
-{
-	int retorno;
-	int x;
 
-	if(resultado!=NULL)
-	{
-		if(op1==0 || op2==0)
-		{
-			retorno=0;
-		}else
-		{
-		x = op1/op2;
-		*resultado=x;
-		retorno=1;
-		}
-
-
-	}
-
-	return retorno;
-}
-
-int multiplicar(int op1,int op2,int* resultado)
-{
-	int retorno=0;
-	int x;
-
-	if(resultado!=NULL)
-	{
-
-		x = op1 * op2;
-		*resultado=x;
-
-		retorno=1;
-
-	}
-
-
-
-	return retorno;
-}
-
-int Factorial(float numero ,float* resultado)
+float Factorial(float numero)
 {
 
 	int i;
@@ -169,8 +78,9 @@ int Factorial(float numero ,float* resultado)
 
 	}
 
-	*resultado =factorial;
-
-	return 0;
+	return factorial;
 
 }
+
+
+
