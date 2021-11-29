@@ -33,7 +33,6 @@ int main()
    // controller_getLastId("createId.txt", newId);
 
 
-
     do{
     	printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto) \n");
 		printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario) \n");
@@ -55,7 +54,6 @@ int main()
             	{
 
             		t=controller_loadFromText("data.csv",listaEmpleados);
-            		ll_remove(listaEmpleados,0);//borra las cabeceras.
 
             		if(t!=0)
             		{

@@ -9,7 +9,7 @@ Employee* employee_new()
 {
 	Employee* empleado;
 
-	empleado= (Employee*) malloc(sizeof(Employee));
+	empleado= (Employee*) calloc(sizeof(Employee),1);
 
 
 	return empleado;
@@ -148,24 +148,13 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 	return empleado;
 }
 
-int employee_compareByName(void* employee1, void* employee2)
+int employee_compareByName(Employee *employee1, Employee *employee2)
 {
-	int retorno;
-	Employee* aux1;
-	aux1 = (Employee*)malloc(sizeof(Employee*));
-	Employee* aux2;
-	aux2 = (Employee*)malloc(sizeof(Employee*));
+	int index;
 
+	index= strcmp(employee1->nombre,employee2->nombre);
 
-	aux1 = (Employee*)employee1;
-	aux2 = (Employee*)employee2;
-
-	if(employee1 != NULL && employee2 != NULL)
-	{
-		retorno = strcmp(aux1->nombre, aux2->nombre);
-	}
-
-	return retorno;
+	return index;
 }
 
 

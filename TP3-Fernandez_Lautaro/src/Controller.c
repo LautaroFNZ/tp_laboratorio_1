@@ -77,22 +77,18 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, char *newId)
 	char id[50];
 	char horas[50];
 	char sueldo[50];
-	char nombre[128];
+	char nombre[50];
 	Employee* empleado;
 
 	idnueva=atoi(newId);
 	idnueva+=1;
 	sprintf(id,"%d",idnueva);
 	printf("Su id asignada fue: %s\n", id);
-	//GetString("Ingrese el nombre: ", nombre);
-	get_StringLetters("Ingrese el nombre:", nombre, "ERROR.Reingrese el nombre:");
-	//GetString("Ingrese las horas trabajadas: ", horas);
-	get_Stringnumber("Ingerse las horas trabajadas:", horas, "ERROR.Reingrese las horas trabajadas:");
-	//GetString("Ingrese el sueldo: ", sueldo);
-	get_Stringnumber("Ingrese el sueldo:", sueldo, "ERROR.Reingrese el sueldo:");
+	GetString("Ingrese el nombre: ", nombre);
+	GetString("Ingrese las horas trabajadas: ", horas);
+	GetString("Ingrese el sueldo: ", sueldo);
 
 	empleado=employee_newParametros(id,nombre,horas,sueldo);
-
 
 	ll_add(pArrayListEmployee,empleado);
 
@@ -109,36 +105,22 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, char *newId)
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
 
-	char nombreIngresado[128];
+	char nombreIngresado[50];
 	int sueldoIngresado;
 	int horasIngresadas;
-	char idIngresadaStr[50];
     int idIngresada;
-    char optionStr[50];
     int option;
     int len;
-
-    char sueldoStr[50];
-    char horasStr[50];
     Employee* empleadoRecibido;
 
     controller_ListEmployee(pArrayListEmployee);
 
     len= ll_len(pArrayListEmployee);
 
-	//idIngresada=GetInt("Ingrese el id a editar: ");
-    if((get_Stringnumber("Ingrese el id a editar:", idIngresadaStr, "ERROR.Ingrese una id valida:"))==1)
-    {
-    	idIngresada = atoi(idIngresadaStr);
-    }
-
+	idIngresada=GetInt("Ingrese el id a editar: ");
 	while(idIngresada<0 || idIngresada>len)
 	{
-		if((get_Stringnumber("Ingrese el id a editar:", idIngresadaStr, "ERROR.Ingrese una id valida:"))==1)
-		{
-			idIngresada = atoi(idIngresadaStr);
-		}
-
+		idIngresada=GetInt("ERROR. Ingrese el id a editar: ");
 	}
 
 	if(pArrayListEmployee!=NULL)
@@ -148,65 +130,38 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 		printf("2. Editar sueldo: \n");
 		printf("3. Editar horas trabajadas: \n");
 		printf("4. Editar todos los elementos: \n");
-		//option=GetInt("Ingrese una opcion: ");
-		if((get_Stringnumber("Ingrese una opcion:", optionStr, "ERROR.Reingrese un numero valido:"))==1)
-		{
-			option = atoi(optionStr);
-		}
+		option=GetInt("Ingrese una opcion: ");
 
 		switch(option)
 		{
 			case 1:
-				//GetString("Ingrese el nuevo nombre: ",nombreIngresado);
-				get_StringLetters("Ingrese el nuevo nombre:", nombreIngresado, "ERROR.Reingrese el nombre:");
+				GetString("Ingrese el nuevo nombre: ",nombreIngresado);
 				employee_setNombre(empleadoRecibido, nombreIngresado);
-				printf("Nombre actualizado!\n");
 				break;
 			case 2:
-				//sueldoIngresado=GetInt("Ingresar el nuevo sueldo:");
-				if((get_Stringnumber("Ingresar el nuevo sueldo:", sueldoStr, "ERROR.Reingrese el sueldo:"))==1)
-				{
-					sueldoIngresado = atoi(sueldoStr);
-					employee_setSueldo(empleadoRecibido, sueldoIngresado);
-					printf("Sueldo actualizado!\n");
-				}
-
+				sueldoIngresado=GetInt("Ingresar el nuevo sueldo:");
+				employee_setSueldo(empleadoRecibido, sueldoIngresado);
 				break;
 			case 3:
-				//horasIngresadas=GetInt("Ingrese la nueva cantidad de horas: ");
-				if((get_Stringnumber("Ingrese la nueva cantidad de horas:", horasStr, "ERROR.Reingrese las horas:"))==1)
-				{
-					horasIngresadas=atoi(horasStr);
-					employee_setHorasTrabajadas(empleadoRecibido, horasIngresadas);
-					printf("Horas actualizadas!\n");
-				}
-
+				horasIngresadas=GetInt("Ingrese la nueva cantidad de horas: ");
+				employee_setHorasTrabajadas(empleadoRecibido, horasIngresadas);
 				break;
 			case 4:
-				get_StringLetters("Ingrese el nuevo nombre:", nombreIngresado, "ERROR.Reingrese el nombre:");
+				GetString("Ingrese el nuevo nombre: ",nombreIngresado);
 				employee_setNombre(empleadoRecibido, nombreIngresado);
 
-				if((get_Stringnumber("Ingresar el nuevo sueldo:", sueldoStr, "ERROR.Reingrese el sueldo:"))==1)
-				{
-					sueldoIngresado = atoi(sueldoStr);
-					employee_setSueldo(empleadoRecibido, sueldoIngresado);
+				sueldoIngresado=GetInt("Ingresar el nuevo sueldo:");
+				employee_setSueldo(empleadoRecibido, sueldoIngresado);
 
-				}
+				horasIngresadas=GetInt("Ingrese la nueva cantidad de horas: ");
+				employee_setHorasTrabajadas(empleadoRecibido, horasIngresadas);
 
-				if((get_Stringnumber("Ingrese la nueva cantidad de horas:", horasStr, "ERROR.Reingrese las horas:"))==1)
-				{
-					horasIngresadas=atoi(horasStr);
-					employee_setHorasTrabajadas(empleadoRecibido, horasIngresadas);
-
-				}
-				printf("Datos editados con exito!");
 				break;
-			default:
 
-				printf("OPCION NO VALIDA!\n");
-
-			break;
+			printf("Datos editados con exito!");
 		}
+
+
 
 	}
 
@@ -224,44 +179,29 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
     int len;
-    char idIngresadaStr[50];
-    int idIngresada;
-    char respuestaStr[50];
+    int id;
     int respuesta;
-
+    Employee* empleados;
 
     controller_ListEmployee(pArrayListEmployee);
 
     len=ll_len(pArrayListEmployee);
 
-    if((get_Stringnumber("Ingrese el id a eliminar:", idIngresadaStr, "ERROR.Ingrese una id valida:"))==1)
-	{
-		idIngresada = atoi(idIngresadaStr);
-	}
-
-	while(idIngresada<0 || idIngresada>len)
-	{
-		if((get_Stringnumber("Ingrese el id a eliminar:", idIngresadaStr, "ERROR.Ingrese una id valida:"))==1)
-		{
-			idIngresada = atoi(idIngresadaStr);
-		}
-
-	}
+    id=GetInt("Ingrese el id del empleado: ");
+    while(id<0 || id>len)
+    {
+    	id=GetInt("ERROR.Ingrese el id del empleado: ");
+    }
 
     if(pArrayListEmployee!=NULL)
     {
-    	//respuesta=GetInt("Ingrese 1 para confimar la eliminacion (con cualquier otro numero se cancela):");
-    	if((get_Stringnumber("Ingrese 1 para confimar la eliminacion (con cualquier otro numero se cancela):", respuestaStr, "ERROR.Reingrese 1 para confimar la eliminacion (con cualquier otro numero se cancela):"))==1)
-		{
-    		respuesta=atoi(respuestaStr);
-		}
-
-
+    	respuesta=GetInt("Ingrese 1 para procedeer a la eliminacion: ");
 
     	if(respuesta==1)
     	{
-
-			ll_remove(pArrayListEmployee,idIngresada);
+    		empleados = ll_get(pArrayListEmployee,id);
+			free(empleados);
+			ll_remove(pArrayListEmployee,id);
 			printf("Se ha elminado con exito\n");
 
     	}else
@@ -293,7 +233,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 	char nombre[50];
 	int horas;
 	int sueldo;
-	int len;
+	int cantidad;
 	int i;
 	Employee* empleados;
 
@@ -301,10 +241,11 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 	if(pArrayListEmployee!=NULL)
 	{
 
-	len= ll_len(pArrayListEmployee);
+	cantidad= ll_len(pArrayListEmployee);
 
+		//employee_showHeader(pArrayListEmployee);
 
-		for(i=1;i<len;i++)
+		for(i=1;i<cantidad;i++)
 		{
 			empleados= (Employee*) ll_get(pArrayListEmployee,i);
 
@@ -332,13 +273,8 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-	int r=0;
-
-	if(pArrayListEmployee!=NULL)
-	{
-		 ll_sort(pArrayListEmployee,employee_compareByName,1);
-		 r=1;
-	}
+	int r;
+	r = ll_sort(pArrayListEmployee,employee_compareByName,1);
 	return r;
 }
 
@@ -356,28 +292,19 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
     Employee* auxEmpleado;
     FILE* archivo;
 
-    int id;
-    char nombre[128];
-    int horas;
-    int sueldo;
 
-    if(pArrayListEmployee!=NULL && path!=NULL)
+    len=ll_len(pArrayListEmployee);
+
+
+    archivo = fopen(path,"w");
+
+    if(archivo!=NULL)
     {
-    	archivo = fopen(path,"w");
-
-    	len=ll_len(pArrayListEmployee);
 
     	for(i=0;i<len;i++)
     	{
     		auxEmpleado = ll_get(pArrayListEmployee, i);
-
-    		employee_getId(auxEmpleado, &id);
-    		employee_getNombre(auxEmpleado, nombre);
-    		employee_getHorasTrabajadas(auxEmpleado, &horas);
-    		employee_getSueldo(auxEmpleado, &sueldo);
-
-
-    		fprintf(archivo,"%d,%s,%d,%d\n", id,nombre,horas,sueldo);
+    		fprintf(archivo,"%d,%s,%d,%d\n", auxEmpleado->id,auxEmpleado->nombre,auxEmpleado->horasTrabajadas,auxEmpleado->sueldo);
     	}
 
     	printf("Se han guardado los datos con exito!\n");
@@ -399,13 +326,12 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
     int i;
-    FILE* archivo;
+    FILE* archivo= fopen(path,"wb");
     Employee* empleado;
     int len;
 
-    if(pArrayListEmployee!=NULL && path!=NULL)
+    if(pArrayListEmployee!=NULL)
     {
-    	archivo=fopen(path,"wb");
     	len= ll_len(pArrayListEmployee);
 
     	if(archivo!=NULL)
